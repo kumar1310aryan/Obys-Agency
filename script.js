@@ -93,11 +93,13 @@ function loadingAnimation() {
   );
 }
 function cursorAnimation() {
-  Shery.mouseFollower({
-    skew: true,
-    ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-    duration: 1,
+  document.addEventListener("mousemove", function (dets) {
+    gsap.to("#crsr", {
+      left: dets.x,
+      top: dets.y,
+    });
   });
+
   Shery.makeMagnet("#nav-part2 h4");
 
   var videoContainer = document.querySelector("#video-container");
@@ -249,6 +251,20 @@ function footerAnimation() {
     });
 }
 
+function headingHover() {
+  var cursor = document.querySelector("#crsr");
+  var heading = document.querySelector("#hero3 h2");
+
+  heading.addEventListener("mouseenter", function () {
+    cursor.style.display = "none";
+  });
+
+  heading.addEventListener("mouseleave", function () {
+    cursor.style.display = "block";
+  });
+}
+
+headingHover();
 loadingAnimation();
 cursorAnimation();
 locomotiveAnimation();
