@@ -38,9 +38,9 @@ body {
 }
 
 .mousefollower {
-  border: 2px solid #fff;
+  border: 3px solid #ffffff;
   background-color: rgb(255, 255, 255);
-  scale: 2;
+  scale: 1.5;
   mix-blend-mode: difference;
 }
 
