@@ -92,6 +92,8 @@ function loadingAnimation() {
     "-=1.2"
   );
 }
+
+function loadingAnimation2() {}
 function cursorAnimation() {
   // document.addEventListener("mousemove", function (dets) {
   //   gsap.to("#crsr", {
@@ -257,23 +259,154 @@ function footerAnimation() {
     });
 }
 
-function headingHover() {
-  var cursor = document.querySelector("#crsr");
-  var heading = document.querySelector("#hero3 h2");
+// let clickMe = document.querySelector(".clickMe");
+// clickMe.addEventListener("click", () => {
+//   gsap.to(".obysMenu", {
+//     display: "block",
+//     duration: 0,
+//     onComplete: () => {
+//       gsap.fromTo(
+//         ".obysMenu",
+//         { top: "-100%" },
+//         { top: "0%", duration: 1, ease: "power4.out" }
+//       );
+//     },
+//   });
+// });
 
-  heading.addEventListener("mouseenter", function () {
-    cursor.style.display = "none";
-  });
+// document.addEventListener("DOMContentLoaded", function() {
+//   const clickMe = document.querySelector(".clickMe");
+//   const menu = document.querySelector(".obysMenu");
+//   const clickHere = document.getElementById("hamburger");
 
-  heading.addEventListener("mouseleave", function () {
-    cursor.style.display = "block";
-  });
-}
+//   // Function to show the menu
+//   clickMe.addEventListener("click", function() {
+//     gsap.to(menu, { top: "0%", duration: 0.5, ease: "power2.out" });
+//   });
 
-headingHover();
+//   // Function to hide the menu
+//   clickHere.addEventListener("click", function() {
+//     gsap.to(menu, { top: "-100%", duration: 0.5, ease: "power2.in" });
+//   });
+// });
+
 loadingAnimation();
 cursorAnimation();
 locomotiveAnimation();
 sheryAnimation();
 flagAnimation();
 footerAnimation();
+
+// let clickMe = document.querySelector(".clickMe");
+// let cut = document.querySelector("#hamburger");
+
+// clickMe.addEventListener("click", () => {
+//   gsap.to(".obysMenu", {
+//     display: "block",
+//     top: "0%",
+//     duration: 1,
+//     ease: "power4.out",
+
+//   });
+// });
+
+// cut.addEventListener("click", () => {
+//   gsap.to(".obysMenu", {
+//     display: "none",
+//     top: "-100%",
+//     duration: 1,
+//     ease: "power4.out",
+
+//   });
+// });
+
+// let clickMe = document.querySelector(".clickMe");
+// let cut = document.querySelector("#hamburger");
+
+// if (clickMe) {
+//   clickMe.addEventListener("click", () => {
+//     console.log(clickMe);
+//     gsap.set(".obysMenu", {
+//       display: "flex",
+//       top: "-100%",
+//     });
+//     gsap.to(".obysMenu", {
+//       top: "0%",
+//       duration: 1,
+//       ease: "power4.out",
+//     });
+//   });
+// }
+
+// if (cut) {
+//   cut.addEventListener("click", () => {
+//     gsap.to(".obysMenu", {
+//       display: "none",
+//       top: "-100%",
+//       duration: 1,
+//       ease: "power4.out",
+//       onComplete: () => gsap.set(".obysMenu", { display: "none" }), // Hide after animation
+//     });
+//   });
+// }
+
+let clickMe = document.querySelector(".clickMe");
+let cut = document.querySelector("#hamburger");
+
+if (clickMe) {
+  clickMe.addEventListener("click", () => {
+    // Ensure the menu is displayed before starting the animation
+    gsap.set(".obysMenu", {
+      display: "flex", // Set display to flex before animation
+      top: "-100%", // Start from off-screen
+    });
+    gsap.to(".obysMenu", {
+      top: "0%", // Animate to visible
+      duration: 1,
+      ease: "power4.out",
+    });
+    const tl2 = gsap.timeline();
+
+    tl2.from(".links h1", {
+      y: 300,
+      stagger: 0.2,
+    });
+  });
+}
+
+if (cut) {
+  cut.addEventListener("click", () => {
+    gsap.to(".obysMenu", {
+      top: "-100%", // Animate back off-screen
+      duration: 1,
+      ease: "power4.out",
+      onComplete: () => {
+        gsap.set(".obysMenu", { display: "none" }); // Hide after animation
+      },
+    });
+    const tl3 = gsap.timeline();
+    t3.from("#page1", {
+      delay: 0.1,
+      y: 1600,
+      duration: 0.5,
+      ease: Power4,
+    });
+    t3.to("#loader", {
+      display: "none",
+    });
+    t3.from("#nav", {
+      opacity: 0,
+    });
+    t3.from("#hero1 h1,#hero2 h1,#hero3 h2,#hero3 h3,#hero4 h1", {
+      y: 140,
+      stagger: 0.2,
+    });
+    t3.from(
+      "#hero1, #page2",
+      {
+        opacity: 0,
+      },
+      "-=1.2"
+    );
+  });
+}
